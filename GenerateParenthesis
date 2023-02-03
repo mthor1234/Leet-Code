@@ -1,0 +1,46 @@
+/** Given n pairs of parentheses, write a function to generate all combinations of well-formed parentheses.
+ * 
+ * Example 1:
+ * 
+ * Input: n = 3
+ * Output: ["((()))","(()())","(())()","()(())","()()()"]
+ * Example 2:
+ * 
+ * Input: n = 1
+ * Output: ["()"]
+ *  
+ * 
+ * Constraints:
+ * 
+ * 1 <= n <=  * 8
+ **/
+
+
+class Solution {
+    var givenN = 0
+    var list = mutableListOf<String>()
+
+
+    fun generateParenthesis(n: Int): List<String> {
+        givenN = n
+        recurse(1, 0, "(")
+        return list
+    }
+
+    fun recurse(lCount : Int, rCount : Int, ans : String) {
+
+        if(ans.length == 2*givenN){
+            println("$ans")
+           list.add(ans)
+        }
+
+        if(lCount  < givenN){
+            recurse( lCount + 1, rCount, ans + "(" )
+        }
+
+        if(rCount < lCount){
+            recurse( lCount, rCount + 1, ans + ")" )
+        }
+
+    }
+}
